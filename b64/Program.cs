@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace b64
 {
@@ -20,6 +21,7 @@ namespace b64
             return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
+        [STAThread]
         static void Main(string[] args)
         {
             Top:
@@ -32,7 +34,12 @@ namespace b64
             {
                 Console.WriteLine("Enter text to be encoded");
                 string inputString = Console.ReadLine();
+                Console.WriteLine(" | ");
+                Console.WriteLine(" V ");
                 Console.WriteLine(Base64Encode(inputString) + "\n");
+
+                Clipboard.SetText(Base64Encode(inputString));
+                Console.WriteLine("Encoded string coppied to clipbord. Press enter to continue.");
                 Console.ReadKey();
                 goto Top;
             }
@@ -40,7 +47,12 @@ namespace b64
             {
                 Console.WriteLine("Enter text to be decoded");
                 string inputString = Console.ReadLine();
+                Console.WriteLine(" | ");
+                Console.WriteLine(" V ");
                 Console.WriteLine(Base64Decode(inputString) + "\n");
+
+                Clipboard.SetText(Base64Encode(inputString));
+                Console.WriteLine("Encoded string coppied to clipbord. Press enter to continue.");
                 Console.ReadKey();
                 goto Top;
             }
