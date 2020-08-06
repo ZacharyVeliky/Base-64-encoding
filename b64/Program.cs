@@ -21,7 +21,6 @@ namespace b64
                 return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
             }
 
-
         [STAThread]
         static void Main(string[] args)
         {
@@ -35,9 +34,17 @@ namespace b64
             
             string input = Console.ReadLine();
 
-            Console.WriteLine("How many rounds of encoding/decoding should be run");
-            
-            int rounds = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("How many rounds of encoding/decoding should be run. (Default is 1)");
+
+            int rounds;
+
+            string tempInput = Console.ReadLine();
+
+            if (tempInput.Length < 1)
+                rounds = 1;
+
+            else
+                rounds = Convert.ToInt32(tempInput);
             
             Console.WriteLine("");
 
