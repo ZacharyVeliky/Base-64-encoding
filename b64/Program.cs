@@ -21,27 +21,43 @@ namespace b64
         {
             int loop = 0;
             while (loop != 1) {
-            int i = 0;
-            string temp1;
-            string temp2;
+                int i = 0;
+                string temp1;
+                string temp2;
+                string tempRounds;
+                int rounds = 1;
+                bool roundsPass = false;
 
-            Console.WriteLine("[1] Encode");
-            Console.WriteLine("[2] Decode");
-            Console.WriteLine("[3] Exit");
+                Console.WriteLine("[1] Encode");
+                Console.WriteLine("[2] Decode");
+                Console.WriteLine("[3] Exit");
 
-            string input = Console.ReadLine();
+                string input = Console.ReadLine();
 
-            int rounds;
                 if (input != "3")
-                {
+                { 
                     Console.WriteLine("How many rounds of encoding/decoding should be run. (Default is 1)");
-                    string tempInput = Console.ReadLine();
-                    if (tempInput.Length < 1)
-                        rounds = 1;
+                    while (roundsPass == false)
+                    {
+                        tempRounds = Console.ReadLine();
+                        if (tempRounds.Length < 1)
+                        {
+                            roundsPass = true;
+                        }
 
-                    else
-                        rounds = Convert.ToInt32(tempInput);
-
+                        else
+                        {
+                            if (int.TryParse(tempRounds, out int n) == true)
+                            {                            
+                                rounds = Convert.ToInt32(tempRounds);
+                                roundsPass = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please input a number.");
+                            }
+                        }
+                    }
 
                     Console.WriteLine("");
 
